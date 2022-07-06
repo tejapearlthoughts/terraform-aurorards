@@ -1,6 +1,6 @@
 provider "aws" {
   version = "~> 2.0"
-  region  = "us-west-2" # Setting my region to London. Use your own region here
+  region  = "us-west-2" # SUse your own region here
 }
 resource "aws_rds_cluster" "default" {
   cluster_identifier      = "dev"
@@ -10,6 +10,8 @@ resource "aws_rds_cluster" "default" {
   database_name           = "mydb"
   master_username         = "admin"
   master_password         = "password"
-  backup_retention_period = 5
+  backup_retention_period = 0
   preferred_backup_window = "07:00-09:00"
-}
+  apply_immediately         = true
+  skip_final_snapshot       = true
+  }
